@@ -1,12 +1,64 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { QrCode, ShieldCheck } from 'lucide-react';
+import ZkExplainer from '@/components/ZkExplainer';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="w-full py-6 px-6 flex justify-center border-b">
+        <div className="max-w-4xl w-full flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <ShieldCheck className="w-6 h-6 text-zkvm-purple" />
+            <span className="text-xl font-semibold">zk-Vendify</span>
+          </div>
+        </div>
+      </header>
+      
+      {/* Main Content */}
+      <main className="flex-1 w-full flex flex-col items-center px-6 pt-12 pb-16">
+        <div className="max-w-2xl w-full flex flex-col items-center text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-zkvm-dark mb-4">
+            Private Payments for Vending Machines
+          </h1>
+          
+          <p className="text-lg text-gray-600 mb-8 max-w-xl">
+            Make anonymous purchases using zk-SNARKs on the Solana blockchain. 
+            No personal data, just seamless, private transactions.
+          </p>
+          
+          <div className="w-full max-w-sm mb-12">
+            <Button 
+              className="zkvm-button w-full text-lg py-6 group transition-all"
+              onClick={() => navigate('/product')}
+            >
+              <QrCode className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+              Scan QR Code to Pay
+            </Button>
+            <p className="text-sm text-gray-500 mt-2">
+              Simulated for demo purposes
+            </p>
+          </div>
+          
+          <div className="w-full">
+            <ZkExplainer className="w-full" />
+          </div>
+        </div>
+      </main>
+      
+      {/* Footer */}
+      <footer className="w-full py-4 border-t">
+        <div className="container flex justify-center">
+          <p className="text-sm text-gray-500">
+            zk-Vendify Demo • Powered by Solana & zk-SNARKs
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
