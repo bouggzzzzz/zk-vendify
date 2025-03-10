@@ -1,12 +1,14 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { QrCode, ShieldCheck } from 'lucide-react';
+import { QrCode, ShieldCheck, Info } from 'lucide-react';
 import ZkExplainer from '@/components/ZkExplainer';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const Index = () => {
   const navigate = useNavigate();
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -17,6 +19,42 @@ const Index = () => {
             <ShieldCheck className="w-6 h-6 text-zkvm-purple" />
             <span className="text-xl font-semibold">zk-Vendify</span>
           </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="sm" className="flex items-center gap-1">
+                <Info className="h-4 w-4" />
+                <span>About</span>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>About the Creator</DialogTitle>
+                <DialogDescription>
+                  Learn more about the zk-Vendify concept and its creator
+                </DialogDescription>
+              </DialogHeader>
+              <div className="py-4 space-y-4">
+                <div>
+                  <h4 className="font-medium text-lg text-zkvm-purple">Jane Cryptographer</h4>
+                  <p className="text-sm text-gray-600">Blockchain Privacy Researcher & Developer</p>
+                </div>
+                <p className="text-sm">
+                  Jane is a privacy advocate and blockchain researcher focused on making everyday transactions more private and secure. The zk-Vendify concept was born from her doctoral research at MIT on practical applications of zero-knowledge proofs.
+                </p>
+                <p className="text-sm">
+                  With a background in cryptography and blockchain development, Jane has been working to bring the complex mathematics of zk-SNARKs to real-world applications that benefit everyday users.
+                </p>
+                <div className="pt-2">
+                  <h5 className="text-sm font-medium">Connect</h5>
+                  <div className="flex gap-2 mt-1">
+                    <a href="#" className="text-xs text-zkvm-purple hover:underline">Twitter</a>
+                    <a href="#" className="text-xs text-zkvm-purple hover:underline">GitHub</a>
+                    <a href="#" className="text-xs text-zkvm-purple hover:underline">Research Papers</a>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </header>
       
